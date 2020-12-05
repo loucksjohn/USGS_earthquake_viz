@@ -3,12 +3,13 @@ function markerSize(mag) {
 }
 
 
-function markerColor(depth) {
+function markerColor(depth) {}
 
 
 var queryURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson"
 
-d3.json(link, function(data) {    
+d3.json(queryURL, function(data) {  
+    console.log(data)  
 createFeatures(data.features);
 });
   
