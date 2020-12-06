@@ -4,7 +4,7 @@ visualizing earthquake data w/ Leaflet
 
 ## 
 
-![1-Logo](Images/1-Logo.png)
+![1-Logo](https://github.com/loucksjohn/leaflet_Challenge/blob/master/1-Logo.png?raw=trueImages/1-Logo.png)
 
 ## Description
 
