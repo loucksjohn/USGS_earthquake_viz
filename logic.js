@@ -53,6 +53,8 @@ function createFeatures(earthquakeData) {
     createMap(earthquakes); 
 };
 
+var tectonicPlates = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json"
+
 function createMap(earthquakes) {
 
     // Define map layers
@@ -82,6 +84,17 @@ function createMap(earthquakes) {
         id: "dark-v10",
         accessToken: API_KEY      
     });
+    // creating new layer and bringing in plate info from URL
+    var plates = new L.LayerGroup();
+    d3.json(tectonicPlates, function(plate){
+        console.log(plate)
+        L.geoJson(plate,{
+        weight:3,
+        color: "#FFA500",
+        fillOpacity:0
+        })
+        .addTo(plates);
+    });
 
 
     var baseMaps = {
@@ -92,13 +105,13 @@ function createMap(earthquakes) {
 
     var overlayMaps = {
         "Earthquakes": earthquakes,
-        
+        "Tectonic Plates": plates
     };
 
     var myMap = L.map("mapid", {
         center: [40.167, -100.167],
         zoom: 4,
-        layers: [satellitemap, earthquakes]
+        layers: [satellitemap, earthquakes, plates]
     });
 
     L.control.layers(baseMaps, overlayMaps, {
